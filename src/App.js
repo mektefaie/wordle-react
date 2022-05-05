@@ -1,12 +1,25 @@
 import Logo from './images/EKdev.png';
+import { useEffect, useState } from 'react';
 
 function App() {
+  const [solution, setSolution] = useState(null);
+
+  useEffect(() => {
+    fetch('http://localhost:3001/solutions')
+      .then(res => res.json())
+      .then(json => {
+        const randomSolution = json[Math.floor(Math.random() * json.length)];
+        setSolution(randomSolution.word);
+      });
+  }, [setSolution]);
+
   return (
     <div className='App'>
       <h1>
-        <img class='logo' src={Logo} alt='EKDev logo' />
+        <img className='logo' src={Logo} alt='EKDev logo' />
         Wordle 2022
       </h1>
+      <div>{solution && <div>Solution is: {solution}</div>}</div>
     </div>
   );
 }
