@@ -1,5 +1,6 @@
 import Logo from './images/EKdev.png';
 import { useEffect, useState } from 'react';
+import Wordle from './components/Wordle';
 
 function App() {
   const [solution, setSolution] = useState(null);
@@ -19,7 +20,7 @@ function App() {
         <img className='logo' src={Logo} alt='EKDev logo' />
         Wordle 2022
       </h1>
-      <div>{solution && <div>Solution is: {solution}</div>}</div>
+      <div>{solution && <Wordle solution={solution} />}</div>
     </div>
   );
 }
